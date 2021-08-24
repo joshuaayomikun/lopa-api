@@ -24,7 +24,7 @@ class CauseData(APIView):
         try:
             cause = Cause.objects.get(event_id=event_id)
             cause_serializer = CauseSerializer(cause)
-            return Response(cause_serializer.data, status=200)
+            return Response(cause_serializer.data, status=200, many=True)
         except Cause.DoesNotExist:
             return Response(None, status=400)
 
@@ -35,7 +35,7 @@ class CauseBarrierData(APIView):
         try:
             cause_barrier = CauseBarrier.objects.get(cause_id=cause_id)
             cause_barrier_serializer = CauseBarrierSerializer(cause_barrier)
-            return Response(cause_barrier_serializer.data, status=200)
+            return Response(cause_barrier_serializer.data, status=200, many=True)
         except CauseBarrier.DoesNotExist:
             return Response(None, status=400)
 
@@ -45,7 +45,7 @@ class ConsequenceData(APIView):
         try:
             consequence = Consequence.objects.get(event_id=event_id)
             consequence_serializer = ConsequenceSerializer(consequence)
-            return Response(consequence_serializer.data, status=200)
+            return Response(consequence_serializer.data, status=200, many=True)
         except Consequence.DoesNotExist:
             return Response(None, status=400)
 
@@ -57,7 +57,7 @@ class ConsequenceBarrierData(APIView):
         try:
             consequence_barrier = ConsequenceBarrier.objects.get(consequence_id=consequence_id)
             consequence_barrier_serializer = ConsequenceBarrierSerializer(consequence_barrier)
-            return Response(consequence_barrier_serializer.data, status=200)
+            return Response(consequence_barrier_serializer.data, status=200, many=True)
         except ConsequenceBarrier.DoesNotExist:
             return Response(None, status=400)
 
