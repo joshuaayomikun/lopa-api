@@ -22,9 +22,9 @@ class CauseData(APIView):
 
     def get(self, request, event_id):
         try:
-            cause = Cause.objects.get(event_id=event_id)
+            cause = Cause.objects.filter(event_id=event_id)
             cause_serializer = CauseSerializer(cause)
-            return Response(cause_serializer.data, status=200, many=True)
+            return Response(cause_serializer.data, status=200)
         except Cause.DoesNotExist:
             return Response(None, status=400)
 
@@ -33,9 +33,9 @@ class CauseBarrierData(APIView):
     
     def get(self, request, cause_id):
         try:
-            cause_barrier = CauseBarrier.objects.get(cause_id=cause_id)
+            cause_barrier = CauseBarrier.objects.filter(cause_id=cause_id)
             cause_barrier_serializer = CauseBarrierSerializer(cause_barrier)
-            return Response(cause_barrier_serializer.data, status=200, many=True)
+            return Response(cause_barrier_serializer.data, status=200)
         except CauseBarrier.DoesNotExist:
             return Response(None, status=400)
 
@@ -43,9 +43,9 @@ class ConsequenceData(APIView):
     
     def get(self, request, event_id):
         try:
-            consequence = Consequence.objects.get(event_id=event_id)
+            consequence = Consequence.objects.filter(event_id=event_id)
             consequence_serializer = ConsequenceSerializer(consequence)
-            return Response(consequence_serializer.data, status=200, many=True)
+            return Response(consequence_serializer.data, status=200)
         except Consequence.DoesNotExist:
             return Response(None, status=400)
 
@@ -55,9 +55,9 @@ class ConsequenceBarrierData(APIView):
     
     def get(self, request, consequence_id):
         try:
-            consequence_barrier = ConsequenceBarrier.objects.get(consequence_id=consequence_id)
+            consequence_barrier = ConsequenceBarrier.objects.filter(consequence_id=consequence_id)
             consequence_barrier_serializer = ConsequenceBarrierSerializer(consequence_barrier)
-            return Response(consequence_barrier_serializer.data, status=200, many=True)
+            return Response(consequence_barrier_serializer.data, status=200)
         except ConsequenceBarrier.DoesNotExist:
             return Response(None, status=400)
 
